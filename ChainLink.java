@@ -1,8 +1,9 @@
-class ChainLink {
+class ChainLink<T> {
     
     Node start = null;
     Node end = null;
     int size = 0;
+    T data;
 
     public ChainLink() {
         start = null;
@@ -10,7 +11,7 @@ class ChainLink {
         size = 0;
     }
 
-    public void insertAtEnd(String data) {
+    public void insertAtEnd(T data) {
         Node nptr = new Node(data, null);
         if (start == null) {
             start = nptr;
@@ -43,14 +44,29 @@ class ChainLink {
         }
     }
 
+    public void sizeAfterIndex(int index, ChainLink<T> chainLink)
+    {
+        int remainingSize = chainLink.size - index;
+        if (remainingSize < 0) {
+            remainingSize = 0;
+        }
+        System.out.println("The remaining size of the list after index " + index + " is: " + remainingSize);
+    }
+
+
+
     public static void main(String[] args) 
     {
+        
         ChainLink list = new ChainLink();
         list.insertAtEnd("Red");
-        list.insertAtEnd("blue");
-        list.insertAtEnd("green");
+        list.insertAtEnd(1);
+        list.insertAtEnd(1.2);
 
+        list.searchElementByPosition(1);
         list.searchElementByPosition(2);
         list.searchElementByPosition(3);
+
+        list.sizeAfterIndex(2, list);
     }
 }
